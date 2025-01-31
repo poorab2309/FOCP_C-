@@ -1,0 +1,470 @@
+//(Q1)Create a program that reads a user's name and age, then outputs: "Hello [name], you are [age] years old!"
+
+#include<iostream>
+#include <string>
+using namespace std;
+
+
+int main() {
+    string name;
+    int age;
+    cout << "Enter your name : ";
+    getline(cin, name);
+    cout << "Enter your age : "; 
+    cin >> age;
+    cout << "Hello " << name << ", you are " << age << " years old." << endl;
+
+
+    return 0;
+}
+
+//Q2)
+//Write a program to take two integers as input and display their sum.
+
+#include<iostream>
+using namespace std;
+
+
+int main() {
+
+    int a,b;
+    cout << "Enter first number : ";
+    cin >> a;
+    cout << "Enter Second number : ";
+    cin >> b;
+    cout << a << " + " << b << " = " << a+b ; 
+
+    return 0;
+}
+
+//Q3)
+//Ask the user to input two numbers and a mathematical operator (+, -,*, /) and display the result of the operation. Eg 3 4* output 12 (Hint: use switch case)
+
+#include<iostream>
+using namespace std;
+
+int a, b;
+char c;
+int main() {
+
+    cout << "Enter first number : ";
+    cin >> a;
+    cout << "Enter second number : ";
+    cin >> b;
+    cout << "Enter operation (+,-,*,/)";
+    cin >> c;
+
+switch(c) {
+    
+    case '+':
+        cout << a << c << b << " = " << a+b << endl;
+        break;
+    case '-':
+        cout << a << c << b << " = " << a-b << endl;
+        break;
+    case '*':
+        cout << a << c << b << " = " << a*b << endl;
+        break;
+    case '/':
+        cout << a << c << b << " = " << a/b << endl;
+        break;
+}
+
+
+    return 0;
+}
+//Q4
+//Take two floating-point number is input and display their division result with two decimal places.
+
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+int main() {
+
+    float a,b,c;
+    cout << "Enter first number : ";
+    cin >> a;
+    cout << "Enter Second number : ";
+    cin >> b;
+
+    if (b == 0) {
+        cout << "Division by zero is not allowed. :( " << endl; } 
+    else {
+        c = a / b;
+        cout << fixed << setprecision(2);
+        cout << a << " / " << b << " = " << c << endl;
+
+    }
+
+    return 0;
+}
+//Q5
+//Write a program that calculates the compound interest for a given principal amount, rate of interest, and time period using constants and user input for variables.
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    float p, r, t, amount, ci;
+    
+
+    cout << " principal amount: ";
+    cin >> p;
+    cout << " rate of interest : ";
+    cin >> r;
+    cout << "time (years): ";
+    cin >> t;
+
+
+    amount = p * pow((1 + r / 100), t);
+    ci = amount - p; 
+
+    cout << "Compound Interest: " << ci << endl;
+    cout << "Total Amount after " << t << " years: " << amount << endl;
+
+    return 0;
+}
+
+//Q6
+//Write a program that calculates the area and perimeter of a rectangle using user-provided length and with. Use constants where necessary.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    float length, width;
+
+    cout << "Enter  length: ";
+    cin >> length;
+    cout << "Enter width: ";
+    cin >> width;
+
+    float area = length * width ;
+    float perimeter = 2 * (length + width);
+
+    cout << "Area of rectangle: " << area << endl;
+    cout << "Perimeter of rectangle: " << perimeter << endl;
+
+    return 0;
+}
+//Q7
+//Write a program to swap two numbers using a temporary variable and then without using a temporary variable.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int a, b, c;
+    cout << "Enter two numbers: ";
+    cin >> a >> b;
+
+    c = a;
+    a = b;
+    b = c;
+
+    cout << "After swap: a = " << a << ", b = " << b << endl;
+
+
+    cout << "Enter two new numbers : ";
+
+    cin >> a >> b;
+
+    a = a + b; 
+    b = a - b;
+    a = a - b;
+
+    cout << "After swap : a = " << a << ", b = " << b << endl;
+
+    return 0;
+}
+
+//Q8)
+//Write a program that takes the user's full name and age as input and displays a greeting with the name and the number of days they have lived.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string name;
+    int age;
+
+
+    cout << "Enter your name: ";
+    getline(cin, name);
+    cout << "Enter your age: ";
+    cin >> age;
+
+    int days = age * 365;
+
+    cout << "Hello, " << name << "! Etne din jee liya!" << days << " days." << endl;
+
+    return 0;
+}
+//Q9)
+//Create a program that takes three inputs: a character, an integer, and a floating-point number. Display them in a formatted table.
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    char c;
+    int i;
+    float f;
+
+    cout << "Enter a character: ";
+    cin >> c;
+    cout << "Enter an integer: ";
+    cin >> i;
+    cout << "Enter a float: ";
+    cin >> f;
+
+
+    cout << "\nFormatted Output:\n";
+    cout << "-----------------------------------------------" << endl;
+    cout << left << setw(20) << "Character" << setw(20) << "Integer" << setw(20) << "Float" << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << left << setw(20) << c << setw(20) << i << setw(20) << fixed << setprecision(2) << f << endl;
+    cout << "-----------------------------------------------" << endl;
+
+    return 0;
+}
+
+//Q10)
+//Develop a program that takes two integers as input and determines if the first is a multiple of the second using relational and logical operators.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n1, n2;
+    
+    cout << "Enter the first num: ";
+    cin >> n1;
+    cout << "Enter the second num: ";
+    cin >> n2;
+
+    if (n2 != 0 && n1 % n2 == 0) {
+        cout << n1 << " is a multiple of " << n2 << "." << endl;
+    } else {
+        cout << n1 << " is not a multiple of " << n2 << "." << endl;
+    }
+    
+    return 0;
+}
+
+//Q11)
+//Create a program to count the number of 1 bits in an integer input by the user.
+
+#include <iostream>
+using namespace std;
+
+int count(int num) {
+    int count = 0;
+    while (num > 0) {
+        count += num & 1; 
+        num >>= 1; 
+    }
+    return count;
+}
+
+int main() {
+    int num;
+    
+    cout << "Enter an integer: ";
+    cin >> num;
+    
+    cout << "The number of 1 bits in " << num << " is: " << count(num) << endl;
+    
+    return 0;
+}
+
+//Q12)
+//Write a program that solves a quadratic equation (ax*2 + bx + © = 0) using conditional statements to handle all possible cases (real and distinct roots, real and equal roots, complex roots).
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cout << "Enter coefficients a, b, and c: ";
+    cin >> a >> b >> c;
+
+    if (a == 0) {
+        if (b != 0) {
+            int root = -c / b;
+            cout << "This is a linear equation, The root is: " << root << endl;
+        }
+     else {
+        if (c == 0) {
+            cout << "Infinite  ." << endl;
+        } else {
+     cout << "no solution .." << endl; }
+        
+        
+        
+        }
+    } else {
+
+
+
+        int discriminant = b * b - 4 * a * c;
+
+        if (discriminant > 0) {
+            // Real and distinct roots
+            int root1 = (-b + sqrt(discriminant)) / (2 * a);
+            int root2 = (-b - sqrt(discriminant)) / (2 * a);
+            cout << "The roots are real and distinct.: " << root1 << " and " << root2 << endl;
+
+
+        } 
+        else if (discriminant == 0) {
+        
+            int root = -b / (2 * a);
+            cout << "The roots are real and equal. " << root << endl;
+        } else {
+            // Complex roots
+            int realPart = -b / (2 * a);
+            int imaginaryPart = sqrt(-discriminant) / (2 * a);
+
+            cout << "The roots are complex. : " << realPart << " + " << imaginaryPart << "i and "
+                 << realPart << " - " << imaginaryPart << "i" << endl;
+        }
+    }
+
+    return 0;
+}
+
+//13)
+//Create a program to simulate an ATM machine using a switch statement. Include options for withdrawal, deposit, balance inquiry, and exit, with error handling for invalid input and insufficient balance.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    double balance = 1000.0; 
+    int choice;
+    double amount;
+
+    do {
+
+        cout << "\n--- ATM Menu ---" << endl;
+        cout << "1. Balance Inquiry" << endl;
+        cout << "2. Deposit" << endl;
+        cout << "3. Withdrawal" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+ 
+        switch (choice) {
+             case 1: 
+                cout << "current balance : Rs" << balance << endl;
+                break;
+
+            case 2:
+                cout << "amt to be deposited : Rs";
+                cin >> amount;
+                if (amount > 0) {
+                    balance += amount;
+                    cout << "new balance updated  Rs" << balance << endl;
+                } else {
+                    cout << " enter correct amount"  << endl;
+                }
+                break;
+
+            case 3: 
+                cout << "amount to be withdrew .: Rs";
+                cin >> amount;
+                if (amount > 0) {
+                    if (amount <= balance) {
+                        balance -= amount;
+                        cout << "amount withdrew , new balance: Rs" << balance << endl;
+                    } else {
+                        cout << "invalid balance ,current balance is : Rs" << balance << endl;
+                    }
+                } else {
+                    cout << "incorrect ." << endl;
+                }
+                break;
+
+            case 4:
+                cout << "Thank you for using the ATM d." << endl;
+                break;
+
+            default:
+                cout << "choose valid option ." << endl;
+                break;
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
+//14) //Develop a program that checks if a triangle is valid based on the lengths of its sides and determines its type (equilateral, isosceles, or scalene) using nested if-else statements.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b, c;
+
+    cout << "Enter the three sides of the triangle: ";
+    cin >> a >> b >> c;
+
+   if (a + b > c && a + c > b && b + c > a) {
+
+        cout << "triangle is valid!!" << endl;
+
+        if (a == b && b == c) {
+
+            cout << "The triangle is equilateral." << endl;
+        } else if (a == b || b == c || a == c) {
+    
+            cout << "The triangle is isosceles." << endl;
+        } else {
+
+            cout << "The triangle is scalene." << endl;
+        }
+    } else {
+  
+        cout << "Kaha se laye yeh value triangle he galat hai......" << endl;
+    }
+
+    return 0;
+}
+//Q15)
+//Write a program to evaluate (a*b + c&d) where a, b, c, and d are user inputs. Explain the precedence of bitwise operators in the program.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b, c, d;
+
+    cout << "Enter values for a, b, c, and d: ";
+    cin >> a >> b >> c >> d;
+
+    int result = (a * b + c & d);
+
+    cout << "The result of (a * b + c & d) is: " << result << endl;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
