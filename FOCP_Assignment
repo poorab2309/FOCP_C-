@@ -1,0 +1,190 @@
+//Q1 
+#include<iostream>
+using namespace std;
+
+bool isPrime(int a) {  
+   if (a < 2) return false;
+   for(int b = 2; b * b <= a; b++)  {
+      if(a % b == 0) return false;  
+   } 
+   return true;
+}
+
+void factors(int a) {
+   cout << "Factors: ";
+   for (int b = 1; b <= a; b++)   {
+      if (a % b == 0)  cout << b << " ";
+   }
+   cout << "\n";
+}
+
+int nextPrime(int a) {
+   do { a++; } while (!isPrime(a));  
+   return a;
+}
+
+int main() {
+   int num;  
+   cout << "Enter a positive integer: "; 
+   cin >> num;
+   if (num <= 0)  {
+      cout << "Invalid Input! Enter Positive Num.";
+      return 0;  
+   }
+   if (isPrime(num))  {
+      cout << num << " is Prime\n"; 
+      cout << "Next Prime: " << nextPrime(num) << "\n";
+   } 
+   else {
+      cout << num << " is Not Prime\n"; 
+      factors(num);
+   }
+   return 0;
+}
+
+//Q2))
+#include<iostream>
+using namespace std;
+
+void reverseArray(int a[], int b)  {
+    for(int c = 0; c < b / 2; c++) {
+        int d = a[c];  
+        a[c] = a[b - c - 1];  
+        a[b - c - 1] = d;
+    }
+}
+
+void secondLargestSmallest(int a[], int b) {
+    if (b < 2) { 
+        cout << "Not enough elements!\n";
+        return;
+    }
+    int big = a[0], sBig = -1e9, small = a[0], sSmall = 1e9;
+    for (int c = 1; c < b; c++) {
+        if (a[c] > big) { sBig = big; big = a[c]; }
+        else if (a[c] > sBig && a[c] != big) sBig = a[c];
+        if (a[c] < small) { sSmall = small; small = a[c]; }
+        else if (a[c] < sSmall && a[c] != small) sSmall = a[c];
+    }
+    cout << "Second Largest: " << sBig << "\nSecond Smallest: " << sSmall << "\n";
+}
+
+int main() {
+    int num;  
+    cout << "Enter size of array: ";
+    cin >> num;
+    if (num <= 0) { 
+        cout << "Invalid size!";
+        return 0; 
+    }
+    int a[num];
+    cout << "Enter " << num << " elements: ";
+    for (int b = 0; b < num; b++) cin >> a[b];
+    reverseArray(a, num);
+    cout << "Reversed Array: ";
+    for (int b = 0; b < num; b++) cout << a[b] << " ";
+    cout << "\n";
+    secondLargestSmallest(a, num);
+    return 0;
+}
+Q3))
+#include<iostream>
+#include<algorithm>
+#include<unordered_map>
+using namespace std;
+
+bool isPalindrome(string a) {
+    string b = "";
+    for(char c : a) if(isalnum(c)) b += tolower(c);
+    string d = b;  reverse(d.begin(), d.end());
+    return b == d;
+}
+
+void charFrequency(string a) {
+    unordered_map<char, int> b;
+    for(char c : a) if(isalpha(c)) b[tolower(c)]++;
+    cout << "Character Frequency:\n";
+    for(auto d : b) cout << d.first << " : " << d.second << "\n";
+}
+
+void replaceVowels(string &a, char b) {
+    for(char &c : a) if(string("aeiouAEIOU").find(c) != string::npos) c = b;
+}
+
+int main() {
+    string a;
+    cout << "Enter a string: ";
+    getline(cin, a);
+    if (a.empty()) {
+        cout << "Empty string not allowed!";
+        return 0;
+    }
+    cout << (isPalindrome(a) ? "Palindrome\n" : "Not Palindrome\n");
+    charFrequency(a);
+    replaceVowels(a, '*');
+    cout << "Modified String: " << a << "\n";
+    return 0;
+}
+Q4)))
+#include<iostream>
+using namespace std;
+
+void spiral(int a) {
+    int b[a][a] , c = 1 , d = 0 , e = a - 1 , f = 0 , g = a - 1;
+    while (c <= a * a) {
+        for (int h = d; h <= e; h++)  b[f][h] = c++;
+        f++;
+        for (int h = f; h <= g; h++)  b[h][e] = c++;
+        e--;
+        for (int h = e; h >= d; h--)  b[g][h] = c++;
+        g--;
+        for (int h = g; h >= f; h--)  b[h][d] = c++;
+        d++;
+    }
+    for (int h = 0; h < a; h++) {
+        for (int i = 0; i < a; i++) cout << b[h][i] << " ";
+        cout << "\n";
+    }
+}
+
+int main() {
+    int a;
+    cout << "Enter size: ";
+    cin >> a;
+    if (a <= 0) { cout << "Invalid size!"; return 0; }
+    spiral(a);
+    return 0;
+}
+
+Q5))
+#include<iostream>
+using namespace std;
+
+void rotate(int a[][10], int b) {
+    for (int c = 0; c < b; c++) {
+        for (int d = c; d < b; d++) {
+            swap(a[c][d], a[d][c]);
+        }
+    }
+    for (int c = 0; c < b; c++) {
+        for (int d = 0, e = b - 1; d < e; d++, e--) {
+            swap(a[d][c], a[e][c]);
+        }
+    }
+}
+
+int main() {
+    int a, b[10][10];
+    cout << "Enter size: ";
+    cin >> a;
+    if (a <= 0 || a > 10) { cout << "Invalid size!"; return 0; }
+    cout << "Enter elements:\n";
+    for (int c = 0; c < a; c++) for (int d = 0; d < a; d++) cin >> b[c][d];
+    rotate(b, a);
+    cout << "Rotated Matrix:\n";
+    for (int c = 0; c < a; c++) {
+        for (int d = 0; d < a; d++) cout << b[c][d] << " ";
+        cout << "\n";
+    }
+    return 0;
+}
