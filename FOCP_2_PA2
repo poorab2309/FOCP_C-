@@ -1,0 +1,502 @@
+Q1)))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int n;  
+    cout << "enter size: ";  
+    cin >> n;  
+
+    // above part
+    for (int i = 1; i <= n; i++) {  
+        for (int j = 1; j <= i; j++) cout << "*";  
+        for (int j = 1; j <= 2 * (n - i); j++) cout << " ";  
+        for (int j = 1; j <= i; j++) cout << "*";  
+        cout << endl;  
+    }  
+
+    // below part 
+    for (int i = n; i >= 1; i--) {  
+        for (int j = 1; j <= i; j++) cout << "*";  
+        for (int j = 1; j <= 2 * (n - i); j++) cout << " ";  
+        for (int j = 1; j <= i; j++) cout << "*";  
+        cout << endl;  
+    }  
+
+    return 0;  
+}
+Q2)))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int n;  
+    cout << "how many elements ? ";  
+    cin >> n;  
+
+    int arr[n];  
+    cout << "enter your numbers : ";  
+    for (int i = 0; i < n; i++) {  
+        cin >> arr[i];  
+    }  
+
+    cout << "in reverse : ";  
+    for (int i = n - 1; i >= 0; i--) {  
+        cout << arr[i] << " ";  
+    }  
+
+    cout << endl;  
+    return 0;  
+}
+Q3))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int n;  
+    cout << "how much numbers ? ";  
+    cin >> n;  
+
+    int arr[n];  
+    cout << "add numbers : ";  
+    for (int i = 0; i < n; i++) {  
+        cin >> arr[i];  
+    }  
+
+    int maxi = arr[0], mini = arr[0];   
+    for (int i = 1; i < n; i++) {  
+        if (arr[i] > maxi) maxi = arr[i];  
+        if (arr[i] < mini) mini = arr[i];  
+    }  
+
+    cout << "Max: " << maxi << endl;  
+    cout << "Min: " << mini << endl;  
+
+    return 0;  
+}
+Q4))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int n;  
+    cout << "how many numbers ? ";  
+    cin >> n;  
+
+    int arr[n], sum = 0;  
+    cout << "Number??: ";  
+    for (int i = 0; i < n; i++) {  
+        cin >> arr[i];  
+        sum += arr[i];  // Total sum   
+    }  
+
+    float avg = (float)sum / n;  // Average  
+    cout << "Sum: " << sum << endl;  
+    cout << "Average: " << avg << endl;  
+
+    return 0;  
+}
+Q5)))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int n;  
+    cout << "how many numbers ? ";  
+    cin >> n;  
+
+    int arr[n];  
+    cout << "add them : ";  
+    for (int i = 0; i < n; i++) {  
+        cin >> arr[i];  
+    }  
+
+    // Simple sorting (Bubble Sort)
+    for (int i = 0; i < n - 1; i++) {  
+        for (int j = 0; j < n - i - 1; j++) {  
+            if (arr[j] > arr[j + 1]) {  
+                swap(arr[j], arr[j + 1]);   
+            }  
+        }  
+    }  
+
+    cout << "Sorted array: ";  
+    for (int i = 0; i < n; i++) {  
+        cout << arr[i] << " ";  
+    }  
+    cout << endl;  
+
+    return 0;  
+}
+Q6))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int n, num, found = 0;  
+    cout << "how many numbers ? ";  
+    cin >> n;  
+
+    int arr[n];  
+    cout << "Number   : ";  
+    for (int i = 0; i < n; i++) {  
+        cin >> arr[i];  
+    }  
+
+    cout << "which no. to find ? ";  
+    cin >> num;  
+
+    // Linear search shuru  
+    for (int i = 0; i < n; i++) {  
+        if (arr[i] == num) {  
+            cout << "found! Position: " << i + 1 << endl;  
+            found = 1;  
+            break;  
+        }  
+    }  
+
+    if (!found) {  
+        cout << "didn't find  " << endl;  
+    }  
+
+    return 0;  
+}
+Q7))))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int n;  
+    cout << hoW much ? ";  
+    cin >> n;  
+
+    int arr[n];  
+    cout << "Add numbers : ";  
+    for (int i = 0; i < n; i++) {  
+        cin >> arr[i];  
+    }  
+
+    // remove duplicates  
+    int temp[n], size = 0;  
+
+    for (int i = 0; i < n; i++) {  
+        bool repeat = false;  
+        for (int j = 0; j < size; j++) {  
+            if (arr[i] == temp[j]) {  
+                repeat = true;  
+                break;  
+            }  
+        }  
+        if (!repeat) {  
+            temp[size] = arr[i];  
+            size++;  
+        }  
+    }  
+
+      
+    cout << "new array after removing duplicate : ";  
+    for (int i = 0; i < size; i++) {  
+        cout << temp[i] << " ";  
+    }  
+    cout << endl;  
+
+    return 0;  
+}
+Q8))
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main() {  
+    int n;  
+    cout << "HOW MANY ? ";  
+    cin >> n;  
+
+    int arr[n];  
+    cout << "ADD NUMBERS : ";  
+    for (int i = 0; i < n; i++) {  
+        cin >> arr[i];  
+    }  
+
+    set<int> s(arr, arr + n);  
+    int longest = 0;  
+
+    for (int num : s) {  
+        if (s.find(num - 1) == s.end()) {   
+            int currentNum = num;  
+            int count = 1;  
+
+            while (s.find(currentNum + 1) != s.end()) {  
+                currentNum++;  
+                count++;  
+            }  
+
+            longest = max(longest, count);  
+        }  
+    }  
+
+    cout << "Sabse lamba consecutive subsequence: " << longest << endl;  
+
+    return 0;  
+}
+Q9))))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int r, c;  
+    cout << "how many rows and columns : ";  
+    cin >> r >> c;  
+
+    int mat[r][c], trans[c][r];  
+
+    cout << "elements of matrix  :\n";  
+    for (int i = 0; i < r; i++) {  
+        for (int j = 0; j < c; j++) {  
+            cin >> mat[i][j];  
+        }  
+    }  
+
+    // transpose  
+    for (int i = 0; i < r; i++) {  
+        for (int j = 0; j < c; j++) {  
+            trans[j][i] = mat[i][j];  
+        }  
+    }  
+
+    // Transposed print 
+    cout << "Transpose matrix:\n";  
+    for (int i = 0; i < c; i++) {  
+        for (int j = 0; j < r; j++) {  
+            cout << trans[i][j] << " ";  
+        }  
+        cout << endl;  
+    }  
+
+    return 0;  
+}
+Q10)))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int r1, c1, r2, c2;  
+    cout << "Enter rows and columns of first matrix: ";  
+    cin >> r1 >> c1;  
+    cout << "Enter rows and columns of second matrix: ";  
+    cin >> r2 >> c2;  
+
+    if (c1 != r2) {  
+        cout << "Multiplication not possible! Columns of first must match rows of second.\n";  
+        return 0;  
+    }  
+
+    int a[r1][c1], b[r2][c2], c[r1][c2];  
+
+
+    for (int i = 0; i < r1; i++)  
+        for (int j = 0; j < c2; j++)  
+            c[i][j] = 0;    
+
+    cout << "Enter first matrix elements:\n";  
+    for (int i = 0; i < r1; i++)  
+        for (int j = 0; j < c1; j++)  
+            cin >> a[i][j];  
+
+    cout << "Enter second matrix elements:\n";  
+    for (int i = 0; i < r2; i++)  
+        for (int j = 0; j < c2; j++)  
+            cin >> b[i][j];  
+
+    // Matrix Multiplication  
+    for (int i = 0; i < r1; i++) {  
+        for (int j = 0; j < c2; j++) {  
+            for (int k = 0; k < c1; k++) {  
+                c[i][j] += a[i][k] * b[k][j];  
+            }  
+        }  
+    }  
+
+    cout << "Resultant Matrix:\n";  
+    for (int i = 0; i < r1; i++) {  
+        for (int j = 0; j < c2; j++) {  
+            cout << c[i][j] << " ";  
+        }  
+        cout << endl;  
+    }  
+
+    return 0;  
+}
+Q11)
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int n;
+    cout << "Enter matrix size (n × n): ";
+    cin >> n;
+
+    int mat[n][n];
+    cout << "Enter matrix elements:\n";
+    
+    for (int i = 0; i < n; i++)  
+        for (int j = 0; j < n; j++)  
+            cin >> mat[i][j];
+
+    int sum1 = 0, sum2 = 0;  
+
+    for (int i = 0; i < n; i++) {  
+        sum1 += mat[i][i];          // Primary diagonal (same row, same col)
+        sum2 += mat[i][n - i - 1];  // Secondary diagonal (row, reverse col)
+    }
+
+    cout << "Primary Diagonal Sum: " << sum1 << endl;
+    cout << "Secondary Diagonal Sum: " << sum2 << endl;
+
+    return 0;  
+}
+Q12)))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int r, c;   
+    cout << "Rows and cols : ";  
+    cin >> r >> c;    
+
+    int arr[r][c];    
+
+    cout << "Matrix :\n";  
+    for (int i = 0; i < r; i++)    
+        for (int j = 0; j < c; j++)    
+            cin >> arr[i][j];    
+
+    int maxSum = 0, maxRow = 0;   
+
+    for (int i = 0; i < r; i++) {    
+        int sum = 0;   
+        for (int j = 0; j < c; j++)  
+            sum += arr[i][j];    
+
+        if (sum > maxSum) {   
+            maxSum = sum;    
+            maxRow = i + 1;  // 1-based index
+        }
+    }
+
+    cout << "Sabse zyada sum row " << maxRow << " ka hai: " << maxSum << endl;    
+    return 0;    
+}
+Q13)))
+#include <iostream>
+using namespace std;
+
+int main() {
+    int r, c, x;  
+    cout << "Rows, cols : ";  
+    cin >> r >> c;  
+
+    int arr[r][c];    
+    cout << "Matrix :\n";  
+    for (int i = 0; i < r; i++)    
+        for (int j = 0; j < c; j++)    
+            cin >> arr[i][j];    
+
+    cout << "Kya dhoondhna hai? ";  
+    cin >> x;    
+
+    int i = 0, j = c - 1;  // Start from top-right  
+    while (i < r && j >= 0) {   
+        if (arr[i][j] == x) {    
+            cout << "Mila! Position: (" << i + 1 << ", " << j + 1 << ")\n";  
+            return 0;    
+        }  
+        else if (arr[i][j] > x)  
+            j--;  // Move left  
+        else  
+            i++;  // Move down  
+    }
+
+    cout << "Nope ! \n";  
+    return 0;    
+}
+Q14))
+#include <iostream>
+using namespace std;
+
+int main() {  
+    int r, c;  
+    cout << "Rows, cols : ";  
+    cin >> r >> c;  
+
+    int arr[r][c];  
+    cout << "Matrix :\n";  
+    for (int i = 0; i < r; i++)  
+        for (int j = 0; j < c; j++)  
+            cin >> arr[i][j];  
+
+    cout << "Boundary elements: ";  
+
+    // First row  
+    for (int j = 0; j < c; j++)  
+        cout << arr[0][j] << " ";  
+
+    // Last column  
+    for (int i = 1; i < r; i++)  
+        cout << arr[i][c - 1] << " ";  
+
+    // Last row (right to left)
+    if (r > 1)  
+        for (int j = c - 2; j >= 0; j--)  
+            cout << arr[r - 1][j] << " ";  
+
+    // First column (bottom to top)
+    if (c > 1)  
+        for (int i = r - 2; i > 0; i--)  
+            cout << arr[i][0] << " ";  
+
+    cout << endl;  
+    return 0;  
+}
+Q15))))
+#include <iostream>
+using namespace std;
+
+int main() {
+    int r, c;
+    cout << "Rows, cols : ";
+    cin >> r >> c;
+
+    int arr[r][c];
+    cout << "Matrix :\n";
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+            cin >> arr[i][j];
+
+    bool found = false;
+
+    // Har row me check karenge
+    for (int i = 0; i < r; i++) {
+        int minCol = 0; // Row ka min element ka index
+        for (int j = 1; j < c; j++)
+            if (arr[i][j] < arr[i][minCol])
+                minCol = j;
+
+        // Ab check karna hai ki yeh max hai kya column me
+        bool isSaddle = true;
+        for (int k = 0; k < r; k++)
+            if (arr[k][minCol] > arr[i][minCol]) {
+                isSaddle = false;
+                break;
+            }
+
+        if (isSaddle) {
+            cout << "Saddle Point Found -> " << arr[i][minCol] << endl;
+            found = true;
+        }
+    }
+
+    if (!found) cout << "Koi Saddle Point nahi mila!\n";
+
+    return 0;
+}
