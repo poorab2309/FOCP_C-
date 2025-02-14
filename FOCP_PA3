@@ -1,0 +1,63 @@
+/Q1)) Write a function int maxNumber(int a, int b) that takes two integers as parameters
+      and returns the larger one.
+#include<iostream>
+using namespace std;
+int maxNumber(int a,int b){
+    return (a > b) ? a : b;
+
+}
+
+int main(){
+
+    int x,y;
+    cout<<"enter 2 numbers "<<endl;
+    cin>>x>>y;
+
+    cout<<"the larger no. is "<<maxNumber( x, y)<<endl;
+
+} 
+Q2))
+Write a function int factorial(int n) that takes a number as input and returns its
+factorial.
+
+#include<iostream>
+using namespace std;
+
+int factorial(int n){
+    if(n == 0 || n == 1)
+         return 1;
+    return n*factorial(n-1);
+}
+int main(){
+    int num;
+    cout<<"entere the no. you wanna get factorial of"<<endl;
+    cin>>num;
+
+    cout<<"factorial of "<<num<<"is:"<<factorial(num)<<endl;
+}
+Q3))))
+Write a function int reverseNumber(int n) that returns the reversed version of a given
+number
+
+#include<iostream>
+using namespace std;
+int reverseNumber(int n){
+    int reversed=0;
+    while(n!=0){
+        int digit = n%10;
+        reversed = reversed *10 +digit;
+        n /= 10;
+
+    }
+    return reversed;
+}
+
+int main(){
+    int no;
+    cout<<"enter the no. you wanna get reversed"<<endl;
+    cin>>no;
+    cout<<"reversed no."<<reverseNumber(no)<<endl;
+
+}
+Q4))
+
