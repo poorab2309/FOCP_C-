@@ -60,4 +60,104 @@ int main(){
 
 }
 Q4))
+#include <iostream>
+using namespace std;
+
+int sumOfDigits(int n) {
+    int sum = 0;
+    
+    // Make sure n is positive
+    n = abs(n);
+
+    while (n > 0) {
+        sum += n % 10;  // Extract the last digit and add to sum
+        n /= 10;        // Remove the last digit
+    }
+    
+    return sum;
+}
+
+int main() {
+    int num;
+    cout << "Enter a number: ";
+    cin >> num;
+    
+    cout << "Sum of digits: " << sumOfDigits(num) << endl;
+    
+    return 0;
+}
+Q5)))
+#include <iostream>
+using namespace std;
+
+bool isPalindrome(int n) {
+    int original = n, reversed = 0, digit;
+
+    // Handle negative numbers (optional)
+    if (n < 0) return false;
+
+    while (n > 0) {
+        digit = n % 10;          // Get the last digit
+        reversed = reversed * 10 + digit;  // Build the reversed number
+        n /= 10;                 // Remove the last digit
+    }
+
+    return original == reversed;  // Check if the number is the same when reversed
+}
+
+int main() {
+    int num;
+    cout << "Enter a number: ";
+    cin >> num;
+
+    if (isPalindrome(num))
+        cout << num << " is a palindrome." << endl;
+    else
+        cout << num << " is not a palindrome." << endl;
+
+    return 0;
+}
+Q6)))
+#include <iostream>
+using namespace std;
+
+int fibonacci(int n) {
+    if (n <= 1)
+        return n; 
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    int n;
+    cout << "Enter the position (n): ";
+    cin >> n;
+    
+    cout << "Fibonacci number at position " << n << " is " << fibonacci(n) << endl;
+    return 0;
+}
+
+Q7)))
+#include <iostream>
+using namespace std;
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b; 
+        a = temp;
+    }
+    return a;
+}
+
+int main() {
+    int num1, num2;
+    cout << "Enter two numbers: ";
+    cin >> num1 >> num2;
+
+    cout << "GCD of " << num1 << " and " << num2 << " is " << gcd(num1, num2) << endl;
+    return 0;
+}
+Q8)))
+
+
 
