@@ -1,0 +1,224 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+
+class Student {
+private:
+	string name;
+	int rollNumber;
+	float cgpa;
+	vector<string> courses;
+
+public:
+	// Default constructor
+	Student() {
+		name = "Unknown";
+		rollNumber = 0;
+		cgpa = 0.0;
+	}
+
+	//
+	Student(string n, int roll, float c) {
+		name = n;
+		rollNumber = roll;
+		setCGPA(c);  // valid range check hoga
+	}
+
+	// 
+	Student(const Student &s) {
+		name = s.name;
+		rollNumber = s.rollNumber;
+		cgpa = s.cgpa;
+		courses = s.courses;
+	}
+
+	
+	~Student() {}
+
+	
+	void addCourse(string course) {
+		if (find(courses.begin(), courses.end(), course) != courses.end()) {
+			cout << "Course already added!\n";
+			return;
+		}
+		courses.push_back(course);
+	}
+
+
+	void setCGPA(float c) {
+		if (c < 0.0 || c > 10.0) {
+			cout << "Invalid CGPA! (0.0 to 10.0 only)\n";
+			cgpa = 0.0;
+		} else {
+			cgpa = c;
+		}
+	}
+
+
+	int getRollNumber() const {
+		return rollNumber;
+	}
+
+	
+	void displayInfo() const {
+		cout << "\nName: " << name << endl;
+		cout << "Roll Number: " << rollNumber << endl;
+		cout << "CGPA: " << cgpa << endl;
+		cout << "Courses: ";
+		if (courses.empty()) {
+			cout << "None";
+		} else {
+			for (const string &course : courses) {
+				cout << course << " ";
+			}
+		}
+		cout << "\n";
+	}
+
+	
+	string getName() const {
+		return name;
+	}
+
+
+	void inputCourses() {
+		int n;
+		cout << "Kitne courses add karne hain? ";
+		cin >> n;
+		cin.ignore();
+		for (int i = 0; i < n; i++) {
+			string course;
+			cout << "Course " << i + 1 << ": ";
+			getline(cin, course);
+			addCourse(course);
+		}
+	}
+};
+
+
+class StudentManagementSystem {
+private:
+	vector<Student> students;
+
+public:
+	// Naya student add karo
+	void addStudent() {
+		string name;
+		int roll;
+		float cgpa;
+
+		cout << "\nStudent Name: ";
+		cin.ignore();
+		getline(cin, name);
+		cout << "Roll Number: ";
+		cin >> roll;
+		cout << "CGPA: ";
+		cin >> cgpa;
+
+		Student s(name, roll, cgpa);
+		s.inputCourses();
+		students.push_back(s);
+
+		cout << "Student added successfully!\n";
+	}
+
+	
+	void searchStudent() const {
+		int roll;
+		cout << "\nEnter roll number to search: ";
+		cin >> roll;
+
+		for (const Student &s : students) {
+			if (s.getRollNumber() == roll) {
+				s.displayInfo();
+				return;
+			}
+		}
+		cout << "Student not found!\n";
+	}
+
+
+	void displayAllStudents() const {
+		if (students.empty()) {
+			cout << "No student records.\n";
+			return;
+		}
+
+		for (const Student &s : students) {
+			s.displayInfo();
+			cout << "---------------------------\n";
+		}
+	}
+
+
+	void updateCGPA() {
+		int roll;
+		float newCGPA;
+		cout << "\nEnter roll number: ";
+		cin >> roll;
+
+		for (Student &s : students) {
+			if (s.getRollNumber() == roll) {
+				cout << "Enter new CGPA: ";
+				cin >> newCGPA;
+				s.setCGPA(newCGPA);
+				cout << "CGPA updated.\n";
+				return;
+			}
+		}
+		cout << "Student not found!\n";
+	}
+
+	
+	void addCourseToStudent() {
+		int roll;
+		cout << "\nEnter roll number: ";
+		cin >> roll;
+
+		for (Student &s : students) {
+			if (s.getRollNumber() == roll) {
+				string course;
+				cin.ignore();
+				cout << "Enter course to add: ";
+				getline(cin, course);
+				s.addCourse(course);
+				return;
+			}
+		}
+		cout << "Student not found!\n";
+	}
+};
+
+
+int main() {
+	StudentManagementSystem sms;
+	int choice;
+
+	do {
+		cout << "\n======== Student Management System ========\n";
+		cout << "1.  Add Student\n";
+		cout << "2.  Search Student by Roll Number\n";
+		cout << "3.  Display All Students\n";
+		cout << "4.  Update CGPA\n";
+		cout << "5.  Add Course to Student\n";
+		cout << "0.  Exit\n";
+		cout << "Enter choice: ";
+		cin >> choice;
+
+		switch (choice) {
+			case 1:	 sms.addStudent(); break;
+			case 2:	 sms.searchStudent(); break;
+			case 3:	 sms.displayAllStudents(); break;
+			case 4:	 sms.updateCGPA(); break;
+			case 5:	 sms.addCourseToStudent(); break;
+			case 0:	 cout << "Exiting program...\n"; break;
+			default: cout << "Invalid choice! Try again.\n";
+		}
+
+	} while (choice != 0);
+
+	return 0;
+}
